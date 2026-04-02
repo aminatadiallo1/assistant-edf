@@ -1,22 +1,4 @@
-# Assistant Multi-Agent - Donnees Energetiques
-Projet personnel - Data Scientist IA | Donnees energetiques francaises
-
-## Description
-Assistant IA multi-agent capable d'interroger des donnees energetiques
-en langage naturel et de generer des visualisations automatiques.
-
-## Technologies
-- LangGraph - Orchestration multi-agents
-- FastMCP - Serveur MCP pour interroger des donnees energetiques
-- LangSmith - Monitoring et tracabilite
-- LangChain - Framework LLM
-- OpenAI GPT-3.5 - Modele de langage
-
-## Architecture
-Question utilisateur (langage naturel)
-        ↓
-Orchestrateur LangGraph
-  # Assistant Multi-Agent - Donnees Energetiques
+ # Assistant Multi-Agent - Donnees Energetiques
 
 Projet personnel - Data Scientist IA | Donnees energetiques francaises
 
