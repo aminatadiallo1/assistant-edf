@@ -1,78 +1,164 @@
-# Assistant IA Multi-Agent - Donnees Energetiques Francaises
+# Assistant IA Multi-Agent — Données Énergétiques Françaises
 
-Projet personnel - Data Scientist IA | Donnees energetiques francaises
+> Projet personnel — Data Scientist IA  
+> Aminata Diallo · Master 1 Cybersécurité & Science des Données · Université Paris 8
 
-## Description
-Assistant IA multi-agent capable d interroger des donnees energetiques
-francaises en langage naturel et de generer des visualisations automatiques.
-Le systeme utilise 5 agents specialises coordonnes par un orchestrateur intelligent.
+---
 
-## Architecture - Les 5 agents
+## Présentation
 
-| Agent | Role | Description |
-|-------|------|-------------|
-| Agent 1 | Analyse | Comprend la question et extrait les parametres |
-| Agent 2 | Donnees MCP | Interroge les sources de donnees via le protocole MCP |
-| Agent 3 | Visualisation | Genere automatiquement le bon graphique |
-| Agent 4 | Interpretation | Redige la reponse en francais avec sources citees |
-| Agent 5 | RAG | Recherche dans les documents energetiques indexes |
+Assistant conversationnel multi-agent permettant d'interroger les données énergétiques françaises en **langage naturel** et de générer des **visualisations automatiques**. Conçu pour démontrer une maîtrise concrète des technologies IA appliquées au domaine de l'énergie.
 
-## Orchestrateur intelligent
-Le LLM route automatiquement chaque question vers le bon agent :
-- DONNEES : chiffres, statistiques, consommation, mix, prix
-- CONTEXTE : explications, historique, strategie energetique
-- SALUTATION : accueil personnalise
-- HORSUJET : refus poli avec redirection
+Le système orchestre 5 agents spécialisés via LangGraph, avec un routage intelligent par LLM et une couche RAG documentaire sur des rapports officiels (RTE, ADEME, CRE, Ministère de l'Énergie).
 
-## Technologies
+---
 
-- LangGraph - Orchestration des agents
-- FastMCP - Protocole MCP pour interroger les donnees
-- LangSmith - Monitoring et tracabilite des appels
-- Chroma - Vector store pour le RAG
-- Plotly - Visualisations interactives
-- Streamlit - Interface web
-- OpenAI GPT-3.5 - Modele de langage
+## Architecture
 
-## Sources de donnees
+```
+Question utilisateur
+        │
+        ▼
+┌─────────────────┐
+│  Orchestrateur  │  ← Routage LLM (DONNEES / CONTEXTE / SALUTATION / HORSUJET)
+└────────┬────────┘
+         │
+    ┌────┴─────┬──────────┬──────────┐
+    ▼          ▼          ▼          ▼
+Agent 1    Agent 2    Agent 3    Agent 5
+Analyse    Données    Visuali-    RAG
+           MCP        sation
+    └────────────────────┬──────────┘
+                         ▼
+                     Agent 4
+                  Interprétation
+                         │
+                         ▼
+              Réponse + graphique + sources
+```
 
-- API RTE Open Data (consommation et production electrique)
-- EPEX SPOT (prix du marche de l electricite)
-- Rapport RTE 2024
-- Rapport ADEME 2024
-- Rapport CRE 2024
-- Ministere de l Energie 2024
+### Les 5 agents
 
-## Fonctionnalites
+| Agent | Rôle | Responsabilité |
+|-------|------|----------------|
+| **Agent 1** | Analyse | Comprend la question, extrait les entités et paramètres clés |
+| **Agent 2** | Données MCP | Interroge les APIs (RTE Open Data, EPEX SPOT) via le protocole MCP |
+| **Agent 3** | Visualisation | Sélectionne et génère automatiquement le graphique adapté (Plotly) |
+| **Agent 4** | Interprétation | Rédige la réponse en français avec sources systématiquement citées |
+| **Agent 5** | RAG | Recherche sémantique dans les rapports énergétiques officiels indexés |
 
-- Questions en langage naturel sans competences techniques
-- 3 types de graphiques automatiques (camembert, barres, prix)
-- Reponses tracables avec sources toujours citees
-- RAG documentaire sur 5 rapports energetiques officiels
-- Interface Streamlit avec fond de page et design colore
-- Gestion des questions hors sujet et des salutations
+### Routage intelligent
+
+L'orchestrateur classe chaque question en 4 catégories :
+
+| Route | Déclencheurs | Traitement |
+|-------|-------------|------------|
+| `DONNEES` | chiffres, statistiques, consommation, mix énergétique, prix | Agents 1 → 2 → 3 → 4 |
+| `CONTEXTE` | explications, historique, stratégie, réglementation | Agents 1 → 5 → 4 |
+| `SALUTATION` | bonjour, hello, comment ça va… | Réponse directe personnalisée |
+| `HORSUJET` | questions hors énergie | Refus poli avec redirection |
+
+---
+
+## Stack technique
+
+| Couche | Technologie | Usage |
+|--------|-------------|-------|
+| Orchestration | **LangGraph** | Graphe d'agents, gestion des états, transitions |
+| LLM | **OpenAI GPT-3.5-turbo** | Routage, interprétation, génération de texte |
+| Protocole données | **FastMCP** | Connexion standardisée aux APIs de données |
+| RAG | **Chroma** + LangChain | Vectorisation et recherche sémantique documentaire |
+| Monitoring | **LangSmith** | Traçabilité complète des appels LLM |
+| Visualisation | **Plotly** | Graphiques interactifs (camembert, barres, courbes) |
+| Interface | **Streamlit** | Application web avec design personnalisé |
+
+---
+
+## Sources de données
+
+### APIs temps réel
+- **RTE Open Data** — Consommation et production électrique française
+- **EPEX SPOT** — Prix de marché de l'électricité (€/MWh)
+
+### Corpus RAG (5 documents indexés)
+- Rapport RTE 2024 — Bilan électrique, mix de production, nucléaire
+- Rapport ADEME 2024 — Énergies renouvelables, transition bas-carbone
+- Rapport CRE 2024 — Régulation, tarifs, évolution des prix
+- Rapport Ministère de l'Énergie 2024 — Stratégie nationale, objectifs 2030
+
+---
+
+## Fonctionnalités
+
+- **Langage naturel** — aucune compétence technique requise de l'utilisateur
+- **Visualisation automatique** — le bon graphique est sélectionné selon la question
+- **Réponses traçables** — les sources sont toujours citées, les appels LLM loggés via LangSmith
+- **RAG documentaire** — recherche sémantique sur des rapports officiels récents
+- **Gestion des cas limites** — questions hors-sujet, salutations, ambiguïtés
+
+---
 
 ## Installation
 
-pip install streamlit langchain langchain-openai langchain-community langgraph fastmcp chromadb plotly python-dotenv langchain-text-splitters
+```bash
+# Cloner le dépôt
+git clone https://github.com/aminata-diallo/assistant-energetique.git
+cd assistant-energetique
 
-## Lancement
+# Installer les dépendances
+pip install streamlit langchain langchain-openai langchain-community \
+            langgraph fastmcp chromadb plotly python-dotenv \
+            langchain-text-splitters
+```
 
-Streamlit :
-streamlit run app.py
+---
 
-Terminal :
-python test_rapide.py
+## Configuration
 
-## Variables d environnement (.env)
+Créer un fichier `.env` à la racine :
 
+```env
 OPENAI_API_KEY=sk-...
 LANGCHAIN_API_KEY=lsv2_...
 LANGCHAIN_TRACING_V2=true
 LANGCHAIN_PROJECT=assistant-edf
+```
 
-## Auteur
+---
 
-Aminata Diallo
-Master 1 Cybersecurite et Science des Donnees
-Universite Paris 8
+## Lancement
+
+```bash
+# Interface Streamlit
+streamlit run app.py
+
+# Test en terminal (mode interactif)
+python test_rapide.py
+```
+
+---
+
+## Structure du projet
+
+```
+assistant-edf/
+├── app.py                  # Application Streamlit principale
+├── test_rapide.py          # Test interactif en terminal
+├── projet.ipynb            # Notebook de développement et exploration
+├── .env                    # Variables d'environnement (non versionné)
+├── README.md
+└── NOTES_PROJET.md         # Notes de développement
+```
+
+---
+
+## Roadmap
+
+- [ ] Connecter les vraies APIs RTE (données temps réel)
+- [ ] Déployer sur Streamlit Cloud
+- [ ] Ajouter des tests unitaires sur les agents
+- [ ] Étendre le corpus RAG (données régionales, historiques)
+
+---
+
+*Aminata Diallo — Master 1 Cybersécurité & Science des Données — Université Paris 8*
