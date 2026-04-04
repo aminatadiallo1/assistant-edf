@@ -77,24 +77,24 @@ L'orchestrateur classe chaque question en 4 catégories :
 ## Sources de données
 
 ### APIs temps réel
-- **RTE Open Data** — Consommation et production électrique française
-- **EPEX SPOT** — Prix de marché de l'électricité (€/MWh)
+- **RTE Open Data** - Consommation et production électrique française
+- **EPEX SPOT** - Prix de marché de l'électricité (€/MWh)
 
 ### Corpus RAG (5 documents indexés)
-- Rapport RTE 2024 — Bilan électrique, mix de production, nucléaire
-- Rapport ADEME 2024 — Énergies renouvelables, transition bas-carbone
-- Rapport CRE 2024 — Régulation, tarifs, évolution des prix
-- Rapport Ministère de l'Énergie 2024 — Stratégie nationale, objectifs 2030
+- Rapport RTE 2024 :Bilan électrique, mix de production, nucléaire
+- Rapport ADEME 2024 :Énergies renouvelables, transition bas-carbone
+- Rapport CRE 2024 :Régulation, tarifs, évolution des prix
+-  Rapport Ministère de l'Énergie 2024 : Stratégie nationale, objectifs 2030
 
 ---
 
 ## Fonctionnalités
 
-- **Langage naturel** — aucune compétence technique requise de l'utilisateur
-- **Visualisation automatique** — le bon graphique est sélectionné selon la question
-- **Réponses traçables** — les sources sont toujours citées, les appels LLM loggés via LangSmith
-- **RAG documentaire** — recherche sémantique sur des rapports officiels récents
-- **Gestion des cas limites** — questions hors-sujet, salutations, ambiguïtés
+- **Langage naturel** : aucune compétence technique requise de l'utilisateur
+- **Visualisation automatique** : le bon graphique est sélectionné selon la question
+- **Réponses traçables** : les sources sont toujours citées, les appels LLM loggés via LangSmith
+- **RAG documentaire** : recherche sémantique sur des rapports officiels récents
+- **Gestion des cas limites** : questions hors-sujet, salutations, ambiguïtés
 
 ---
 
