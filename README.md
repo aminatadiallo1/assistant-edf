@@ -1,9 +1,9 @@
-# Assistant IA Multi-Agent — Données Énergétiques Françaises
+# Assistant IA Multi-Agent - Données Énergétiques Françaises
 
-> Projet personnel — Data Scientist IA  
-> Aminata Diallo · Master 1 Cybersécurité & Science des Données · Université Paris 8
+> Projet : Data Scientist IA Agent  
+> Aminata Diallo en  Master 1 Cybersécurité & Science des Données à Université Paris 8
 
----
+
 
 ## Présentation
 
@@ -11,7 +11,7 @@ Assistant conversationnel multi-agent permettant d'interroger les données éner
 
 Le système orchestre 5 agents spécialisés via LangGraph, avec un routage intelligent par LLM et une couche RAG documentaire sur des rapports officiels (RTE, ADEME, CRE, Ministère de l'Énergie).
 
----
+
 
 ## Architecture
 
@@ -58,7 +58,7 @@ L'orchestrateur classe chaque question en 4 catégories :
 | `SALUTATION` | bonjour, hello, comment ça va… | Réponse directe personnalisée |
 | `HORSUJET` | questions hors énergie | Refus poli avec redirection |
 
----
+
 
 ## Stack technique
 
@@ -72,7 +72,7 @@ L'orchestrateur classe chaque question en 4 catégories :
 | Visualisation | **Plotly** | Graphiques interactifs (camembert, barres, courbes) |
 | Interface | **Streamlit** | Application web avec design personnalisé |
 
----
+
 
 ## Sources de données
 
@@ -101,30 +101,11 @@ L'orchestrateur classe chaque question en 4 catégories :
 ## Installation
 
 ```bash
-# Cloner le dépôt
-git clone https://github.com/aminata-diallo/assistant-energetique.git
-cd assistant-energetique
-
 # Installer les dépendances
 pip install streamlit langchain langchain-openai langchain-community \
             langgraph fastmcp chromadb plotly python-dotenv \
             langchain-text-splitters
 ```
-
----
-
-## Configuration
-
-Créer un fichier `.env` à la racine :
-
-```env
-OPENAI_API_KEY=sk-...
-LANGCHAIN_API_KEY=lsv2_...
-LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=assistant-edf
-```
-
----
 
 ## Lancement
 
@@ -136,21 +117,17 @@ streamlit run app.py
 python test_rapide.py
 ```
 
----
-
 ## Structure du projet
 
 ```
 assistant-edf/
-├── app.py                  # Application Streamlit principale
-├── test_rapide.py          # Test interactif en terminal
-├── projet.ipynb            # Notebook de développement et exploration
-├── .env                    # Variables d'environnement (non versionné)
+├──  app.py                  # Application Streamlit principale
+├──  test_rapide.py          # Test interactif en terminal
+├──  projet.ipynb            # Notebook de développement et exploration
+├──  .env                    # Variables d'environnement (non versionné)
 ├── README.md
-└── NOTES_PROJET.md         # Notes de développement
 ```
 
----
 
 ## Roadmap
 
@@ -159,6 +136,5 @@ assistant-edf/
 - [ ] Ajouter des tests unitaires sur les agents
 - [ ] Étendre le corpus RAG (données régionales, historiques)
 
----
 
-*Aminata Diallo — Master 1 Cybersécurité & Science des Données — Université Paris 8*
+*Aminata Diallo - Master 1 Cybersécurité & Science des Données - Université Paris 8*
