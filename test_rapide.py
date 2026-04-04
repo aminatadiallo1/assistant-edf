@@ -111,8 +111,7 @@ system = SystemMessage(content="""Tu es un assistant specialise dans les donnees
 Si la question est hors sujet reponds poliment que tu es specialise uniquement dans ce domaine
 et propose de poser une question sur la consommation le mix energetique ou les prix.""")
 
-print("Assistant Energetique Interactif")
-print("Tapez quitter pour arreter\n")
+print("Bonjour je suis votre assistant Energetique Interactif")
 
 while True:
     question = input("Votre question : ").strip()
